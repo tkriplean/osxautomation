@@ -9,7 +9,7 @@ void mouseMoveTo(int posX, int posY, float speed);
 void mousePress(int btn, int clickType);
 void mouseRelease(int btn, int clickType);
 void mouseClick(int btn, int clickType);
-void mouseDrag(int btn, int posX, int posY);
+void mouseDrag(int btn, int posX, int posY, float speed);
 void typeString(char *str);
 void keyHit(CGKeyCode kc, CGEventFlags flags);
 void keyPress(CGKeyCode kc, CGEventFlags flags);

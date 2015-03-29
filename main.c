@@ -34,7 +34,7 @@ int main (int argc, const char * argv[]) {
 
 void processCommand(const char *cmd) {
   int tmpx, tmpy, btn;
-  float tmpInterval;
+  float tmpInterval, tmpSpeed;
   UInt32 tmpkc;
   char str[CMD_STRING_MAXLEN];
 
@@ -53,8 +53,8 @@ void processCommand(const char *cmd) {
   } else if (IS_CMD(cmd, "mousemove ")) {
 
     print_msg("Moving mouse.");
-    sscanf(cmd, "mousemove %d %d", &tmpx, &tmpy);
-    mouseMoveTo(tmpx, tmpy, 1);
+    sscanf(cmd, "mousemove %d %d %f", &tmpx, &tmpy, &tmpSpeed);
+    mouseMoveTo(tmpx, tmpy, tmpSpeed);
 
   } else if (IS_CMD(cmd, "mousedown")) {
 
@@ -89,8 +89,8 @@ void processCommand(const char *cmd) {
   } else if (IS_CMD(cmd, "mousedrag ")) {
 
     print_msg("Dragging mouse.");
-    sscanf(cmd, "mousedrag %d %d", &tmpx, &tmpy);
-    mouseDrag(LEFT_MOUSE, tmpx, tmpy);
+    sscanf(cmd, "mousedrag %d %d %f", &tmpx, &tmpy, &tmpSpeed);
+    mouseDrag(LEFT_MOUSE, tmpx, tmpy, tmpSpeed);
 
   } else if (IS_CMD(cmd, "press ")) {
 
@@ -285,11 +285,11 @@ void mouseClick(int btn, int clickType) {
   mouseRelease(btn, clickType);
 }
 
-void mouseDrag(int btn, int posX, int posY) {
+void mouseDrag(int btn, int posX, int posY, float speed) {
   bDragging = true;
   mouseEvent(btn, MOUSE_DOWN, SINGLE_CLICK);
   usleep(50000);
-  mouseMoveTo(posX, posY, 5);
+  mouseMoveTo(posX, posY, speed);
   usleep(50000);
   mouseEvent(btn, MOUSE_UP, SINGLE_CLICK);
 }
