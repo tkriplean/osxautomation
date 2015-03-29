@@ -6,7 +6,7 @@
 #define IS_CMD( x, y ) strncmp( x, y, strlen( y ) ) == 0
 #define CMD_STRING_MAXLEN 256
 #define MOUSE_SPEED 4000 // bigger = slower
-#define MOUSE_RESOLUTION 2.5 //how much to move the cursor each interval
+#define MOUSE_RESOLUTION 1.0 //how much to move the cursor each interval
 #define TYPOMATIC_RATE 100000
 
 #define NO_MOUSE_BUTTON 0
