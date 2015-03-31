@@ -95,19 +95,19 @@ void processCommand(const char *cmd) {
   } else if (IS_CMD(cmd, "press ")) {
 
     print_msg("Pressing key.");
-    sscanf(cmd, "press %x", &tmpkc);
+    sscanf(cmd, "press %lx", &tmpkc);
     keyPress((CGKeyCode)tmpkc, NULL);
 
   } else if (IS_CMD(cmd, "release ")) {
 
     print_msg("Releasing key.");
-    sscanf(cmd, "release %x", &tmpkc);
+    sscanf(cmd, "release %lx", &tmpkc);
     keyRelease((CGKeyCode)tmpkc, NULL);
 
   } else if (IS_CMD(cmd, "hit ")) {
 
     print_msg("Hitting key.");
-    sscanf(cmd, "hit %x", &tmpkc);
+    sscanf(cmd, "hit %lx", &tmpkc);
     keyHit((CGKeyCode)tmpkc, NULL);
 
   } else if (IS_CMD(cmd, "type ")) {
@@ -292,6 +292,7 @@ void mouseDrag(int btn, int posX, int posY, float speed) {
   mouseMoveTo(posX, posY, speed);
   usleep(50000);
   mouseEvent(btn, MOUSE_UP, SINGLE_CLICK);
+  bDragging = false;
 }
 
 /* KEYBOARD INPUT */
